@@ -13,6 +13,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Inovola.Weather.API/Inovola.Weather.API.csproj", "Inovola.Weather.API/"]
+COPY ["Inovola.Weather.Application/Inovola.Weather.Application.csproj", "Inovola.Weather.Application/"]
+COPY ["Inovola.Weather.Domain/Inovola.Weather.Domain.csproj", "Inovola.Weather.Domain/"]
+COPY ["Inovola.Weather.Infrastructure/Inovola.Weather.Infrastructure.csproj", "Inovola.Weather.Infrastructure/"]
 RUN dotnet restore "./Inovola.Weather.API/Inovola.Weather.API.csproj"
 COPY . .
 WORKDIR "/src/Inovola.Weather.API"
