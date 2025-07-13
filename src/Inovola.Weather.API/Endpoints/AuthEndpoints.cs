@@ -1,4 +1,5 @@
-﻿using Inovola.Weather.Application.DTOs;
+﻿using Inovola.Weather.API.Validation;
+using Inovola.Weather.Application.DTOs;
 using Inovola.Weather.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace Inovola.Weather.API.Endpoints
                 return Results.Ok(new { token });
             })
             .ProducesValidationProblem()
+            .AddEndpointFilter<ValidationFilter<LoginDto>>()
             .WithName("RegisterUser");
 
             group.MapPost("/login", async ([FromBody] LoginDto dto, IAuthService auth) =>
@@ -27,6 +29,7 @@ namespace Inovola.Weather.API.Endpoints
                 return Results.Ok(new { token });
             })
             .ProducesValidationProblem()
+            .AddEndpointFilter<ValidationFilter<LoginDto>>()
             .WithName("LoginUser");
         }
 
